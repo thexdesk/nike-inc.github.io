@@ -45,7 +45,11 @@ function renderCards(repo) {
       ]),
       m('.card-block', [
         m('div.card-subtitle', [
-          m('div.pull-xs-right', [
+          m('div.m-x-auto', {
+            style: {
+              width: '90px'
+            }
+          }, [
             m('span.label.label-default', 'Forks: ' + repo.forks),
             m.trust('&nbsp;'),
             m('span.label.label-default', 'Stars: ' + repo.stargazers_count)
@@ -53,7 +57,7 @@ function renderCards(repo) {
         ]),
       ]),
       m('.card-footer', [
-        m('.pull-xs-left', [
+        m('.pull-xs-left.m-t-1', [
           m('a.btn.bmd-btn-icon.text-muted', {
             href: 'https://www.facebook.com/sharer/sharer.php?u=' + repo.html_url,
             target: '_blank'
@@ -67,11 +71,11 @@ function renderCards(repo) {
             m('i.g72-twitter')
           )
         ]),
-        m('div.pull-xs-right', [
-          m('a.btn.btn-primary.pull-xs-right', {
+        m('.pull-xs-right', [
+          m('a.btn.btn-primary', {
             href: repo.html_url,
             target: '_blank'
-          }, 'View Repo')
+          }, 'REPO')
         ])
       ])
   ]) : '';
