@@ -8,7 +8,7 @@ var GitHub = require('github-api');
 var contributors = require('./contributors');
 
 var label = {
-  'JavaScript': '.label-warning',
+  'JS': '.label-warning',
   'Java': '.label-danger',
   'Swift': '.label-info'
 };
@@ -16,11 +16,11 @@ var label = {
 function renderCards(repo) {
   if (!repo) { return; }
 
-  repo.language = repo.language === 'CSS' ? 'JavaScript' : repo.language;
+  repo.language = repo.language === 'CSS' || repo.language === 'JavaScript' ? 'JS' : repo.language;
 
   var labelLanguage = label[repo.language] || '.label-default';
 
-  return repo ? m('.card.col-sm-6.col-md-5.col-lg-4.col-xl-3', [
+  return repo ? m('.card.col-xs-12.col-sm-6.col-md-3.col-lg-3.col-xl-3', [
       m('.card-header.ncss-brand.u-capitalize.h4', [
         m('a', {
           href: repo.html_url,
@@ -28,21 +28,51 @@ function renderCards(repo) {
         }, m('img.card-img-top.card-img-top-project', {
           src: '/dist/img/icons/' + repo.name.toLowerCase() + '_no_txt.svg'
         })),
-        repo.name.toUpperCase(),
+        m('a', {
+            href: repo.html_url,
+            target: '_blank'
+          }, repo.name.toUpperCase().replace('NIKE-INC.', '')
+        ),
         m('span.label.pull-xs-right' + labelLanguage, repo.language)
       ]),
       m('.card-block.card-block-project', [
-        m('small.card-subtitle.text-muted', repo.full_name),
-        m('p.card-text', repo.description.length > 114 ? repo.description.substr(0, 114) + ' ...' : repo.description) //,
+        m('a', {
+            href: repo.html_url,
+            target: '_blank'
+          }, m('small.card-subtitle.text-muted', repo.full_name)
+        ),
+        m('p.card-text', repo.description.length > 114 ? repo.description.substr(0, 114) + ' ...' : repo.description)
       ]),
-      m('.card-footer.text-muted', [
-        m('span.label.label-default', 'Forks: ' + repo.forks),
-        m.trust('&nbsp;'),
-        m('span.label.label-default', 'Stars: ' + repo.stargazers_count),
-        m('a.btn.btn-primary.pull-xs-right', {
-          href: repo.html_url,
-          target: '_blank'
-        }, 'View Repo')
+      m('.card-block', [
+        m('div.card-subtitle', [
+          m('div.pull-xs-right', [
+            m('span.label.label-default', 'Forks: ' + repo.forks),
+            m.trust('&nbsp;'),
+            m('span.label.label-default', 'Stars: ' + repo.stargazers_count)
+          ])
+        ]),
+      ]),
+      m('.card-footer', [
+        m('.pull-xs-left', [
+          m('a.btn.bmd-btn-icon.text-muted', {
+            href: 'https://www.facebook.com/sharer/sharer.php?u=' + repo.html_url,
+            target: '_blank'
+            },
+            m('i.g72-facebook')
+          ),
+          m('a.btn.bmd-btn-icon.text-muted', {
+            href: 'https://twitter.com/intent/tweet?text=' + repo.html_url,
+            target: '_blank'
+            },
+            m('i.g72-twitter')
+          )
+        ]),
+        m('div.pull-xs-right', [
+          m('a.btn.btn-primary.pull-xs-right', {
+            href: repo.html_url,
+            target: '_blank'
+          }, 'View Repo')
+        ])
       ])
   ]) : '';
 }
@@ -98,10 +128,10 @@ var repositories = {
         id: 'content',
         config: ctrl.init
       },
-      m('.container.card-deck-wrapper', {
+      m('.container', {
           id: 'repos-container'
         },
-        m('.row.card-deck',
+        m('.row',
           ctrl.repos.map(renderCards)
         )
       ),
