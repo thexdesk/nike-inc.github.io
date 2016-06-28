@@ -12,9 +12,9 @@ var footer = {
             m(".nike-cq-global-footer-2",
               m(".nike-cq-global-footer-2-wrapper.nsg-font-family--base",
                 [
-                  m(".nike-cq-global-footer-2-column-container",
+                  m(".nike-cq-global-footer-2-column-container.row",
                     [
-                      m("ul.nike-cq-global-footer-column",
+                      m("ul.nike-cq-global-footer-column.col-xs-4.col-sm-2",
                         [
                           m("li.nike-cq-global-footer-title.nsg-font-family--platform",
                             m("a[href='http://store.nike.com/us/en_us/?l=shop%2Cgift_cards']",
@@ -28,7 +28,7 @@ var footer = {
                           ),
                           m("li.nike-cq-global-footer-title.nsg-font-family--platform",
                             m("a[href='http://store.nike.com/us/en_us/?l=shop%2Cemail_signup']",
-                              "SIGN UP FOR EMAIL"
+                              "EMAIL SIGN UP"
                             )
                           ),
                           m("li.nike-cq-global-footer-title.nsg-font-family--platform",
@@ -38,7 +38,7 @@ var footer = {
                           )
                         ]
                       ),
-                      m("ul.nike-cq-global-footer-column",
+                      m("ul.nike-cq-global-footer-column.col-xs-4.col-sm-2",
                         [
                           m("li.nike-cq-global-footer-title.nsg-font-family--platform",
                             m("a[href='http://help-en-us.nike.com']",
@@ -72,7 +72,7 @@ var footer = {
                           )
                         ]
                       ),
-                      m("ul.nike-cq-global-footer-column",
+                      m("ul.nike-cq-global-footer-column.col-xs-4.col-sm-2",
                         [
                           m("li.nike-cq-global-footer-title.nsg-font-family--platform",
                             m("a[href='http://news.nike.com']",
@@ -106,12 +106,12 @@ var footer = {
                           )
                         ]
                       ),
-                      m("ul.nike-cq-global-footer-column.nike-cq-global-footer-column-right",
+                      m("ul.nike-cq-global-footer-column.col-xs-4.col-sm-2",
                         [
                           m("li.nike-cq-global-footer-title.nsg-font-family--platform",
                             "SOCIAL"
                           ),
-                          m("li.nike-cq-global-footer-social-container",
+                          m("li.nike-cq-global-footer-social-container.pull-xs-left",
                             [
                               m("span.nike-cq-global-footer-2-social-wrapper[data='twitter']",
                                 m("a[href='https://twitter.com/Nike'][name='twitter'][target='_blank']",
@@ -147,21 +147,17 @@ var footer = {
                       )
                     ]
                   ),
-                  m(".nike-cq-global-footer-bottom-container",
+                  m(".nike-cq-global-footer-bottom-container.row",
                     [
-                      m("ul.nike-cq-global-footer-bottom-column.nike-cq-global-footer-bottom-column-left",
+                      m("ul.nike-cq-global-footer-bottom-column.nike-cq-global-footer-bottom-column-left.col-xs-12.pull-xs-left",
                         m("li",
                           [
-                            "©",
-                            m.trust("&nbsp;"),
-                            "2016",
-                            m.trust("&nbsp;"),
-                            "Nike, Inc. All Rights Reserved"
+                            "© 2016 Nike, Inc. All Rights Reserved"
                           ]
                         )
                       ),
-                      m(".nike-cq-global-footer-bottom-column.nike-cq-global-footer-bottom-column-right",
-                        m(".nike-cq-global-footer-terms",
+                      m(".nike-cq-global-footer-bottom-column.nike-cq-global-footer-bottom-column-right.col-xs-12",
+                        m(".nike-cq-global-footer-terms.pull-xs-left.pull-sm-right",
                           [
                             m("span.nike-cq-global-footer-terms-link.link-0",
                               m("a[href='http://www.nike.com/us/en_us/c/help/terms-conditions']",

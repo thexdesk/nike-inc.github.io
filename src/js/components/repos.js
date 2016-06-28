@@ -47,12 +47,12 @@ function renderCards(repo) {
         m('div.card-subtitle', [
           m('div.m-x-auto', {
             style: {
-              width: '90px'
+              width: '100px'
             }
           }, [
-            m('span.label.label-default', 'Forks: ' + repo.forks),
+            m('span.label.label-default.pull-xs-left', 'Forks: ' + repo.forks),
             m.trust('&nbsp;'),
-            m('span.label.label-default', 'Stars: ' + repo.stargazers_count)
+            m('span.label.label-default.pull-xs-right', 'Stars: ' + repo.stargazers_count)
           ])
         ]),
       ]),

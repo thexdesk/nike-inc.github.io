@@ -3,16 +3,22 @@
 var m = require('mithril');
 
 function renderContributors(contributor) {
-  return contributor ? m('.col-sm-4.col-md-3.col-lg-2.col-xl-2', [
-    m('a', {
-      href: contributor.html_url,
-      target: '_blank'
+  return contributor ? m('.card-contributer.col-xs-4.col-sm-4.col-md-3.col-lg-2.col-xl-2', [
+    m('.m-x-auto', {
+      style: {
+        width: '50px'
+      }
     }, [
-      m('img.card-img-top.card-img-top-contributor', {
-        src: contributor.avatar_url
-      })
+      m('a', {
+        href: contributor.html_url,
+        target: '_blank'
+      }, [
+        m('img.card-img-top.card-img-top-contributor', {
+          src: contributor.avatar_url
+        })
+      ])
     ]),
-    m('small.card-subtitle.text-muted', contributor.login)
+    m('small.card-subtitle.text-muted.text-xs-center', contributor.login)
   ]) : '';
 }
 
