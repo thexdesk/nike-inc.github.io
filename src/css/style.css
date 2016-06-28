@@ -234,8 +234,8 @@
   clear: both
 }
 .nike-cq-global-footer-2-wrapper {
-  padding: 42px 42px 0;
-  min-width: 684px;
+  padding: 40px 40px 0;
+  min-width: 400px;
   max-width: 940px;
   margin: 0 auto;
   color: #999
@@ -368,4 +368,8 @@ span.nike-cq-global-footer-terms-link:first-child {
 
 footer {
   margin-top: 50px;
+}
+
+.svg-background {
+  background-color: #fff;
 }
