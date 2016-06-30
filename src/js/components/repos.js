@@ -4,7 +4,7 @@
 // process.env.GH_PASS = window.prompt('Enter Github Pass');
 
 var m = require('mithril');
-var GitHub = require('github-api');
+//var GitHub = require('github-api');
 var contributors = require('./contributors');
 
 var label = {
@@ -41,13 +41,13 @@ function renderCards(repo) {
             target: '_blank'
           }, m('small.card-subtitle.text-muted', repo.full_name)
         ),
-        m('p.card-text', repo.description.length > 114 ? repo.description.substr(0, 114) + ' ...' : repo.description)
+        m('p.card-text', repo.description && repo.description.length > 114 ? repo.description.substr(0, 114) + ' ...' : repo.description)
       ]),
       m('.card-block', [
         m('div.card-subtitle', [
           m('div.m-x-auto', {
             style: {
-              width: '100px'
+              width: '120px'
             }
           }, [
             m('span.label.label-default.pull-xs-left', 'Forks: ' + repo.forks),
@@ -84,11 +84,18 @@ function renderCards(repo) {
 var repositories = {
   controller: function() {
     var ctrl = this;
-    ctrl.repos = [];
-    ctrl.contributors = [];
+    ctrl.repos = repo_metadata.public_repositories || [];
+    ctrl.contributors = repo_metadata.contributors || [];
+    ctrl.contributors.concat(repo_metadata.organization_members || []);
+    ctrl.repo_metadata = repo_metadata || {};
     ctrl.init = function(el, isInit) {
       if (!isInit) {
-        ctrl.getRepos();
+        //// using repository metadata for live,
+        //// you could uncomment the line below
+        //// for local dev or setup jekyll
+        //// https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll
+
+        //ctrl.getRepos();
       }
     };
     ctrl.getRepos = function() {
@@ -108,6 +115,7 @@ var repositories = {
           }).catch(function(err) {
             console.log('catch', err);
           });
+
 
       org.getRepos(function(err, repos) {
           ctrl.repos = repos;
