@@ -86,7 +86,7 @@ var repositories = {
     var ctrl = this;
     ctrl.repos = repo_metadata.public_repositories || [];
     ctrl.contributors = repo_metadata.organization_members || [];
-    ctrl.contributors = ctrl.contributors.concat(repo_metadata.contributors || []);
+    //ctrl.contributors = ctrl.contributors.concat(repo_metadata.contributors || []);
     ctrl.repo_metadata = repo_metadata || {};
     ctrl.init = function(el, isInit) {
       if (!isInit) {
