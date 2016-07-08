@@ -1,41 +1,47 @@
 'use strict';
-
 var m = require('mithril');
 
 function renderContributors(contributor) {
-  return contributor ? m('.card-contributer.col-xs-4.col-sm-4.col-md-3.col-lg-2.col-xl-2', [
-    m('.m-x-auto', {
-      style: {
-        width: '50px'
-      }
-    }, [
-      m('a', {
-        href: contributor.html_url,
-        target: '_blank'
-      }, [
-        m('img.card-img-top.card-img-top-contributor', {
-          src: contributor.avatar_url
-        })
-      ])
-    ]),
-    m('small.card-subtitle.text-muted.text-xs-center', contributor.login)
-  ]) : '';
+  return contributor ? m("figure.ncss-col-sm-6.ncss-col-md-3.ncss-col-lg-2.u-align-center.mt4-sm",
+                        [
+                          m("a[href='" + contributor.html_url + "']", 
+                            m("img.contributor-img.u-sm-ib[src='" + contributor.avatar_url + "']")
+                          ),
+                          m("figcaption.mt-1-sm", 
+                            m("small", 
+                              contributor.login
+                            )
+                          )
+                        ]
+                      ) : '';
 }
+
+
 
 var contributors = {
   controller: function() {},
   view: function(ctrl, args) {
-    return m('.contributors.content-text-block.container.ncss-brand.card', [
-      m('.card-header.text-xs-center',
-        m('h2', 'CONTRIBUTORS')
-      ),
-      m('.card-block',
-        m('.row',
-          args.contributors.map(renderContributors)
-        )
-      )
-    ]);
+    return m("section.container.ncss-container.fixed-fluid.prl8-md.prl12-lg.mt6-sm", 
+            m(".ncss-row.bg-white.border-light-grey", 
+              m(".ncss-col-sm-12",
+                [
+                  m("header.border-bottom-light-grey.pt2-sm.pb2-sm.u-align-center", 
+                    m("h2.ncss-brand", 
+                      "CONTRIBUTORS"
+                    )
+                  ),
+                  m("article.ncss-container.u-align-center.text-color-grey.pb3-sm", 
+                    m(".ncss-row", 
+                      args.contributors.map(renderContributors)
+                    )
+                  )
+                ]
+              )
+            )
+          )
   }
 };
+
+
 
 module.exports = contributors;
