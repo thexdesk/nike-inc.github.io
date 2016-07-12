@@ -8,12 +8,6 @@
   border-radius: 2px;
 }
 
-.img {
-  max-width: 224px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .info {
   height: 120px;
   overflow: hidden;
@@ -41,16 +35,6 @@
   text-align: center;
 }
 
-@media only screen and (min-width: 641px) {
-  .footer {
-    text-align: left;
-  }
-
-  .social {
-    text-align: right;
-  }
-}
-
 .js {
   background: #f0ad4e;
 }
@@ -61,4 +45,22 @@
 
 .swift {
   background: #5bc0de;
+}
+
+@media only screen and (min-width: 641px) {
+  .footer {
+    text-align: left;
+  }
+
+  .social {
+    text-align: right;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .img {
+    max-width: 224px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

@@ -51,7 +51,7 @@ function renderCards(repo) {
                       )
                     ]
                   ),
-                  m("section.ncss-container.mt12-sm.pb4-sm.border-bottom-light-grey", 
+                  m("section.ncss-container.pb4-sm.border-bottom-light-grey", 
                     m(".ncss-row",
                       [
                         m(".ncss-col-sm-6.prl1-sm.u-align-right", 
