@@ -24,18 +24,18 @@ function renderCards(repo) {
                 [
                   m("figure.pb2-sm.border-bottom-light-grey.u-align-center",
                     [
-                      m("a[href='" + repo.html_url + "']", 
+                      m("a[href='" + repo.html_url + "']",
                         m("img.img.u-sm-ib.u-full-width[alt='github'][src=/dist/img/icons/" + repo.name.toLowerCase() + "_no_txt.svg]")
                       ),
-                      m("figcaption.ncss-container.mt4-sm", 
+                      m("figcaption.ncss-container.mt4-sm",
                         m(".ncss-row",
                           [
-                            m(".ncss-col-sm-8.u-va-m.u-align-left", 
-                              m("a.project-title.u-sm-b.ncss-brand[href='" + repo.html_url + "']", 
+                            m(".ncss-col-sm-8.u-va-m.u-align-left",
+                              m("a.project-title.u-sm-b.ncss-brand[href='" + repo.html_url + "']",
                                 repo.name.toUpperCase().replace('NIKE-INC.', '')
                               )
                             ),
-                            m(".ncss-col-sm-4.u-va-m.u-align-right", 
+                            m(".ncss-col-sm-4.u-va-m.u-align-right",
                               m("span.rounded.ncss-brand.bg-accent.text-color-white.prl2-sm.u-uppercase" + labelLanguage, repo.language)
                             )
                           ]
@@ -46,28 +46,28 @@ function renderCards(repo) {
                   m("section.mt2-sm.p2-sm",
                     [
                       m("a.text-color-grey.small[href='" + repo.html_url + "']", repo.full_name),
-                      m("article.info.small", 
+                      m("article.info.small",
                         repo.description.length > 114 ? repo.description.substr(0, 114) + ' ...' : repo.description
                       )
                     ]
                   ),
-                  m("section.ncss-container.pb4-sm.border-bottom-light-grey", 
+                  m("section.ncss-container.pb4-sm.border-bottom-light-grey",
                     m(".ncss-row",
                       [
-                        m(".ncss-col-sm-6.prl1-sm.u-align-right", 
-                          m("small.rounded.bg-medium-grey.text-color-dark-grey.prl2-sm.u-sm-ib.", 
+                        m(".ncss-col-sm-6.prl1-sm.u-align-right",
+                          m("small.rounded.bg-medium-grey.text-color-dark-grey.prl2-sm.u-sm-ib.",
                             "Forks: " + repo.forks
                           )
                         ),
-                        m(".ncss-col-sm-6.prl1-sm", 
-                          m("small.rounded.bg-medium-grey.text-color-dark-grey.prl2-sm.u-sm-ib", 
+                        m(".ncss-col-sm-6.prl1-sm",
+                          m("small.rounded.bg-medium-grey.text-color-dark-grey.prl2-sm.u-sm-ib",
                             "Stars: " + repo.stargazers_count
                           )
                         )
                       ]
                     )
                   ),
-                  m("footer.ncss-container.mt4-sm", 
+                  m("footer.ncss-container.mt4-sm",
                     m(".ncss-row",
                       [
                         m(".ncss-col-sm-6.u-va-m",
@@ -76,8 +76,8 @@ function renderCards(repo) {
                             m("a.g72-twitter.h3.text-color-grey[href='https://twitter.com/intent/tweet?text=" + repo.html_url + "']")
                           ]
                         ),
-                        m(".ncss-col-sm-6.u-align-right.u-va-m", 
-                          m("a.ncss-btn.border-light-grey.text-color-grey.ncss-brand.pt2-sm.pr5-sm.pb2-sm.pl5-sm[href='" + repo.html_url + "']", 
+                        m(".ncss-col-sm-6.u-align-right.u-va-m",
+                          m("a.ncss-btn.border-light-grey.text-color-grey.ncss-brand.pt2-sm.pr5-sm.pb2-sm.pl5-sm[href='" + repo.html_url + "']",
                             "REPO"
                           )
                         )
@@ -91,11 +91,18 @@ function renderCards(repo) {
 var repositories = {
   controller: function() {
     var ctrl = this;
-    ctrl.repos = [];
-    ctrl.contributors = [];
+    var repo_metadata = repo_metadata || {};
+    ctrl.repos = repo_metadata.public_repositories || [];
+    ctrl.contributors = repo_metadata.organization_members || [];
+    //ctrl.contributors = ctrl.contributors.concat(repo_metadata.contributors || []);
     ctrl.init = function(el, isInit) {
       if (!isInit) {
-        ctrl.getRepos();
+        //// using repository metadata for live,
+        //// you could uncomment the line below
+        //// for local dev or setup jekyll
+        //// https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll
+
+        //ctrl.getRepos();
       }
     };
     ctrl.getRepos = function() {
@@ -139,8 +146,8 @@ var repositories = {
         id: 'content',
         config: ctrl.init
       },
-      m("section.ncss-container.fixed-fluid.prl7-md.prl12-lg", 
-        m(".ncss-row", 
+      m("section.ncss-container.fixed-fluid.prl7-md.prl12-lg",
+        m(".ncss-row",
           ctrl.repos.map(renderCards)
         )
       ),
