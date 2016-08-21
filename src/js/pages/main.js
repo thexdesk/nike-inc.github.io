@@ -12,8 +12,6 @@ var main = {
     return m.component(page, {
       content: [repos, conduct, cla, jobs]
     });
-
-    return m.component(page);
   }
 };
 
