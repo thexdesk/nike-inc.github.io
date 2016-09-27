@@ -92,9 +92,7 @@ function renderCards(repo) {
 const repositories = {
   controller() {
     const ctrl = this;
-    console.log('repo_metadata', repo_metadata);
-    var repo_metadata = window.repo_metadata || {};
-    console.log('repo_metadata', repo_metadata);
+    const repo_metadata = window.repo_metadata || {};
     ctrl.repos = repo_metadata.public_repositories || [];
     ctrl.contributors = repo_metadata.organization_members || [];
 
