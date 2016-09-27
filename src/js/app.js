@@ -1,5 +1,5 @@
 'use strict';
-var m = require('mithril');
+const m = require('mithril');
 
 m.route.mode = 'pathname';
 
