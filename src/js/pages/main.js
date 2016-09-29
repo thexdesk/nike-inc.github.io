@@ -1,14 +1,14 @@
 'use strict';
-var m = require('mithril');
+const m = require('mithril');
 
-var page = require('../components/page');
-var repos = require('../components/repos');
-var conduct = require('../components/conduct');
-var cla = require('../components/cla');
-var jobs = require('../components/jobs');
+const page = require('../components/page');
+const repos = require('../components/repos');
+const conduct = require('../components/conduct');
+const cla = require('../components/cla');
+const jobs = require('../components/jobs');
 
-var main = {
-  view: function() {
+const main = {
+  view() {
     return m.component(page, {
       content: [repos, conduct, cla, jobs]
     });

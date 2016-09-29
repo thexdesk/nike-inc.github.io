@@ -1,17 +1,15 @@
 'use strict';
-var m = require('mithril');
+const m = require('mithril');
 
-var header = require('../components/header');
-var footer = require('../components/footer');
+const header = require('../components/header');
+const footer = require('../components/footer');
 
-var page = {
-  view: function(ctrl, args) {
-    return m('.wrapper',[
+const page = {
+  view(ctrl, args) {
+    return m('.wrapper', [
       m.component(header),
       m('main',
-        args.content.map(function(content) {
-          return m.component(content);
-        })
+        args.content.map(content => m.component(content))
       ),
       m.component(footer)
     ]);
