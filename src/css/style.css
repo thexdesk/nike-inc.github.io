@@ -16,6 +16,7 @@
 .project-title {
   font-size: 20px;
   line-height: 1.2;
+  min-height: 48px;
 }
 
 .project-title:hover {
@@ -36,7 +37,7 @@
 }
 
 .js {
-  background: #f0ad4e;
+  background: #F9C45C;
 }
 
 .java {
@@ -45,6 +46,18 @@
 
 .swift {
   background: #5bc0de;
+}
+
+.python {
+  background: #3C78A9;
+}
+
+.ruby {
+  background: #B60E01;
+}
+
+.scala {
+  background: #15A9CE;
 }
 
 @media only screen and (min-width: 641px) {

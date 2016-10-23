@@ -7,28 +7,33 @@ const contributors = require('./contributors');
 const label = {
   'JS': '.js',
   'Java': '.java',
-  'Swift': '.swift'
+  'Swift': '.swift',
+  'Python': '.python',
+  'Ruby': '.ruby',
+  'Scala': '.scala'
 };
 
 function renderCards(repo) {
-  if (!repo) {
-    return;
-  }
+  if (repo.name.toLowerCase().indexOf('cerberus-') > -1) {return;}
 
   repo.language = repo.language === 'CSS' || repo.language === 'JavaScript' ? 'JS' : repo.language;
 
   const labelLanguage = label[repo.language] || '.label-default';
+  const defaultIcon = '/dist/img/icons/nike-inc.github.io_no_txt.svg';
+  const repoIcon = `/dist/img/icons/${repo.name.toLowerCase()}_no_txt.svg`;
+  const imgReplace = `this.onerror=null;this.src='${defaultIcon}';`;
+  const imgIcon = `<img alt="github" src="${repoIcon}" class="img u-sm-ib u-full-width" onerror="${imgReplace}">`;
 
   return repo ? m('.ncss-col-sm-12.ncss-col-md-6.ncss-col-lg-3.pt6-sm.prl5-sm.pb6-sm.mt6-sm.bg-white.border-light-grey.u-va-t', [
     m('figure.pb2-sm.border-bottom-light-grey.u-align-center', [
       m('a', {
           href: repo.html_url
         },
-        m('img.img.u-sm-ib.u-full-width', {
-          alt: 'github',
-          src: `/dist/img/icons/${repo.name.toLowerCase()}_no_txt.svg`,
-          onerror: 'this.src="/dist/img/icons/nike-inc.github.io_no_txt.svg"'
-        })
+        m.trust(imgIcon)
+        // m('img.img.u-sm-ib.u-full-width', {
+        //   alt: 'github',
+        //   src: repoIcon
+        // })
       ),
       m('figcaption.ncss-container.mt4-sm',
         m('.ncss-row', [
@@ -50,7 +55,7 @@ function renderCards(repo) {
         href: repo.html_url
       }, repo.full_name),
       m('article.info.small',
-        repo.description.length > 114 ? `${repo.description.substr(0, 114)} ...` : repo.description
+        repo.description && repo.description.length > 114 ? `${repo.description.substr(0, 114)} ...` : repo.description
       )
     ]),
     m('section.ncss-container.pb4-sm.border-bottom-light-grey',
@@ -103,7 +108,9 @@ const repositories = {
         //// https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll
         ////
         //// or you could save yourself the hassle and uncomment the next line
-        //ctrl.getRepos();
+
+        // ctrl.getRepos();
+
         //// you will also need to comment out the --- lines and
         //// the repo_metadata assignment in index.html
       }
@@ -111,15 +118,15 @@ const repositories = {
     ctrl.getRepos = () => {
 
       // Auth to view private repos
-      // process.env.GH_USER = '' || window.prompt('Enter Github User');
-      // process.env.GH_PASS = '' || window.prompt('Enter Github Pass');
+      const ghUser = process.env.GH_USER || window.prompt('Enter Github User');
+      const ghPass = process.env.GH_PASS || window.prompt('Enter Github Pass');
 
       const ghAuth = {
-        username: process.env.GH_USER,
-        password: process.env.GH_PASS
+        username: ghUser,
+        password: ghPass
       };
-      const gh = new GitHub(ghAuth);
 
+      const gh = new GitHub(ghAuth);
       const org = gh.getOrganization('nike-inc');
 
       org.listMembers()
@@ -131,17 +138,25 @@ const repositories = {
           console.log('catch', err);
         });
 
-      org.getRepos((err, repos) => {
+      org.getRepos()
+        .then(res => {
+          const repos = res.data;
+          if (!repos){return;}
           ctrl.repos = repos;
 
           repos.map(repo => {
             const remoteRepo = gh.getRepo('nike-inc', repo.name);
-            remoteRepo.getContributors((err, contributorsWrap) => {
-              contributorsWrap.map(contributor => {
-                ctrl.contributors.push(contributor.author);
+            remoteRepo.getContributors()
+              .then(res => {
+                const contributorsWrap = res.data;
+                if (!contributorsWrap) {return;}
+
+                contributorsWrap.map(contributor => {
+                  ctrl.contributors.push(contributor.author);
+                });
               });
-            });
           });
+
           m.redraw(true);
         })
         .catch(err => {
