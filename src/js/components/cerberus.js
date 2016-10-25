@@ -2,7 +2,7 @@
 
 const m = require('mithril');
 const CERBERUS = 'cerberus';
-const CERBERUS_URL = 'http://nike-inc.github.io/cerberus';
+const CERBERUS_URL = 'http://engineering.nike.com/cerberus';
 
 /**
  * Method to create a custom card for cerberus that will link to the github page rather than the repo.
