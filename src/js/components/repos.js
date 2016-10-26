@@ -3,7 +3,6 @@
 const m = require('mithril');
 const GitHub = require('github-api');
 const contributors = require('./contributors');
-const cerberus = require('./cerberus');
 
 const label = {
   'JS': '.js',
@@ -15,7 +14,7 @@ const label = {
 };
 
 function renderCards(repo) {
-  if (cerberus.isRepoCerberusSubProject(repo.name)) {return;}
+  if (repo.name.toLowerCase().indexOf('cerberus-') > -1) {return;}
 
   repo.language = repo.language === 'CSS' || repo.language === 'JavaScript' ? 'JS' : repo.language;
 
@@ -24,10 +23,6 @@ function renderCards(repo) {
   const repoIcon = `/dist/img/icons/${repo.name.toLowerCase()}_no_txt.svg`;
   const imgReplace = `this.onerror=null;this.src='${defaultIcon}';`;
   const imgIcon = `<img alt="github" src="${repoIcon}" class="img u-sm-ib u-full-width" onerror="${imgReplace}">`;
-
-  if (cerberus.isRepoCerberusGitHubPage(repo.name)) {
-    return cerberus.getCustomCerberusCard(imgIcon, repo);
-  }
 
   return repo ? m('.ncss-col-sm-12.ncss-col-md-6.ncss-col-lg-3.pt6-sm.prl5-sm.pb6-sm.mt6-sm.bg-white.border-light-grey.u-va-t', [
     m('figure.pb2-sm.border-bottom-light-grey.u-align-center', [
