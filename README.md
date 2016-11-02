@@ -5,6 +5,13 @@ The source code for http://nike-inc.github.io/.
 
 Used to list Nike's Open Source Software projects.
 
+To Build
+=======
+
+```
+npm run build-min-all
+```
+
 
 LICENSE
 ------------
