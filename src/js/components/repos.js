@@ -4,6 +4,7 @@ const m = require('mithril');
 const GitHub = require('github-api');
 const contributors = require('./contributors');
 const cerberus = require('./cerberus');
+const riposte = require('./riposte');
 
 const label = {
   'JS': '.js',
@@ -15,7 +16,7 @@ const label = {
 };
 
 function renderCards(repo) {
-  if (cerberus.isRepoCerberusSubProject(repo.name)) {return;}
+  if (cerberus.isRepoCerberusSubProject(repo.name) || riposte.isRepoRiposteSubProject(repo.name)) {return;}
 
   repo.language = repo.language === 'CSS' || repo.language === 'JavaScript' ? 'JS' : repo.language;
 
