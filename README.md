@@ -37,6 +37,6 @@ View at http://localhost:4000
 LICENSE
 ------------
 
-Copyright 2016 Nike, Inc.
+Copyright 2017 Nike, Inc.
 
 Released under the MIT license: https://opensource.org/licenses/MIT
