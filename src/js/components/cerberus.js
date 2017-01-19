@@ -6,7 +6,7 @@ const CERBERUS_URL = 'http://engineering.nike.com/cerberus';
 
 /**
  * Method to create a custom card for cerberus that will link to the github page rather than the repo.
- * We want to do this because Cerberus contains many sub projects and has its own github page.
+ * We want to do this because Cerberus contains many sub projects and has its own github page at http://engineering.nike.com/cerberus
  *
  * @param imgIcon The image generated my repos component
  * @param repo The github repo object
