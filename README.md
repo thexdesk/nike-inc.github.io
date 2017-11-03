@@ -34,6 +34,11 @@ bundle exec jekyll serve
 
 View at http://localhost:4000
 
+Changelog
+---------
+
+03-11-2017 - Updating to display recent projects
+
 LICENSE
 ------------
 
