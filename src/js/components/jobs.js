@@ -13,7 +13,7 @@ const jobs = {
           ),
           m("article.u-align-center.text-color-grey.pt6-sm.pb6-sm",
             m("a.ncss-btn.border-light-grey.text-color-grey.ncss-brand.pt2-sm.pr5-sm.pb2-sm.pl5-sm", {
-                href: 'http://jobs.nike.com/careers/digital-&-technology-jobs'
+                href: 'https://jobs.nike.com/category/digital-and-technology-jobs/15675/37648/1'
               },
               "CHECK OUT THE LATEST JOB POSTINGS"
             )
