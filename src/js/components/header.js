@@ -16,7 +16,7 @@ const header = {
       m(".ncss-row.prl5-sm",
         m(".ncss-col-sm-12.u-align-right.text-color-white.pb6-sm.ft",
           m("a.ncss-btn.border-light-grey.text-color-white.ncss-brand.pt2-sm.pr5-sm.pb2-sm.pl5-sm", {
-              href: 'http://medium.com/nikeengineering'
+              href: 'https://medium.com/nikeengineering'
             },
             "ENGINEERING BLOG"
           )
