@@ -45,7 +45,7 @@
     "bootstrap-material-design": "^4.1.0",
     "github-api": "^2.1.0",
     "mithril": "^0.2.5",
-    "ecstatic": ">=2.0.0"
+    "ecstatic": ">=4.1.4"
   },
   "browserify": {
     "transform": [
