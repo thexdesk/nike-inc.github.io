@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "bootstrap-material-design": "^4.1.0",
-    "github-api": "^2.1.0",
+    "github-api": "^3.2.2",
     "mithril": "^0.2.5",
     "ecstatic": ">=2.0.0"
   },
